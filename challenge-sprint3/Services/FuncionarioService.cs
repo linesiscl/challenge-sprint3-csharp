@@ -10,11 +10,12 @@ namespace challenge_sprint3.Services
     public class FuncionarioService
     {
         private readonly FuncionarioRepository _repository;
+        private readonly ClienteRepository _clienteRepository;
 
-
-        public FuncionarioService(FuncionarioRepository repository)
+        public FuncionarioService(FuncionarioRepository repository, ClienteRepository clienteRepository)
         {
             _repository = repository;
+            _clienteRepository = clienteRepository;
         }
 
 
@@ -46,6 +47,22 @@ namespace challenge_sprint3.Services
             using var sha256 = SHA256.Create();
             var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(senha));
             return BitConverter.ToString(bytes).Replace("-", "").ToLower();
+        }
+
+        public List<Cliente> ListarClientes()
+        {
+            return _clienteRepository.ObterTodos();
+        }
+
+        
+        public bool DeletarCliente(int id)
+        {
+            var cliente = _clienteRepository.ObterPorId(id);
+            if (cliente == null)
+                return false;
+
+            _clienteRepository.Remover(id);
+            return true;
         }
     }
 }

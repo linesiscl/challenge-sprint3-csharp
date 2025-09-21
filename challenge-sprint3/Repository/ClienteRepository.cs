@@ -15,13 +15,6 @@ namespace challenge_sprint3.Repository
             _context = context;
         }
 
-        private readonly string _connectionString;
-
-        public ClienteRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
 
         public int Adicionar(Cliente cliente)
         {
@@ -52,9 +45,30 @@ RETURNING Id INTO :Id";
 
         public void AtualizarPerfil(int clienteId, string novoPerfil)
         {
-            using var connection = new OracleConnection(_connectionString);
+            using var connection = _context.CreateConnection();
             string sql = "UPDATE CLIENTES SET PERFILINVESTIDOR = :perfil WHERE ID = :id";
             connection.Execute(sql, new { perfil = novoPerfil, id = clienteId });
+        }
+
+        public Cliente ObterPorId(int id)
+        {
+            using var conn = _context.CreateConnection();
+            string sql = "SELECT * FROM Clientes WHERE Id = :Id";
+            return conn.QueryFirstOrDefault<Cliente>(sql, new { Id = id });
+        }
+
+        public List<Cliente> ObterTodos()
+        {
+            using var conn = _context.CreateConnection();
+            string sql = "SELECT * FROM Clientes";
+            return conn.Query<Cliente>(sql).ToList();
+        }
+
+        public void Remover(int id)
+        {
+            using var conn = _context.CreateConnection();
+            string sql = "DELETE FROM Clientes WHERE Id = :Id";
+            conn.Execute(sql, new { Id = id });
         }
     }
 }

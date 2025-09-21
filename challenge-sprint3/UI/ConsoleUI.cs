@@ -81,12 +81,11 @@ namespace challenge_sprint3.UI
             Console.Write("Senha: ");
             string senha = Console.ReadLine();
 
-
-            var ok = _clienteService.Login(email, senha);
-            if (ok != null)
+            var cliente = _clienteService.Login(email, senha);
+            if (cliente != null)
             {
-                Console.WriteLine($"Login realizado com sucesso!");
-                MenuCliente();
+                Console.WriteLine($"Login realizado com sucesso! Bem-vindo, {cliente.Nome}.");
+                MenuCliente(cliente); 
             }
             else
             {
@@ -102,11 +101,10 @@ namespace challenge_sprint3.UI
             Console.Write("Senha: ");
             string senha = Console.ReadLine();
 
-
             if (_funcionarioService.LoginFuncionario(email, senha))
             {
                 Console.WriteLine("Login de funcionário realizado!");
-                _funcionarioService.ExibirRelatorio();
+                MenuFuncionario(); // Novo menu do funcionário
             }
             else
             {
@@ -190,6 +188,68 @@ namespace challenge_sprint3.UI
             };
 
             return valor * taxa;
+        }
+
+        private void MenuFuncionario()
+        {
+            bool sair = false;
+
+            while (!sair)
+            {
+                Console.WriteLine("\n--- Área do Funcionário ---");
+                Console.WriteLine("1 - Listar todos os clientes");
+                Console.WriteLine("2 - Deletar cliente por ID");
+                Console.WriteLine("3 - Exibir relátorio de cadastros");
+                Console.WriteLine("0 - Sair");
+                Console.Write("Escolha: ");
+                string opcao = Console.ReadLine();
+
+                switch (opcao)
+                {
+                    case "1":
+                        var clientes = _funcionarioService.ListarClientes(); 
+
+                        Console.WriteLine("\n--- Lista de Clientes ---");
+
+                        if (clientes.Count == 0)
+                        {
+                            Console.WriteLine("Nenhum cliente encontrado no banco.");
+                        }
+                        else
+                        {
+                            foreach (var cliente in clientes)
+                            {
+                                Console.WriteLine($"ID: {cliente.Id} | Nome: {cliente.Nome} | Email: {cliente.Email} | Perfil: {cliente.PerfilInvestidor}");
+                            }
+                        }
+                        break;
+
+                    case "2":
+                        Console.WriteLine("Qual o id da conta que deseja deletar?");
+                        if (int.TryParse(Console.ReadLine(), out int idCerto))
+                        {
+                            bool deletado = _funcionarioService.DeletarCliente(idCerto);
+                            Console.WriteLine(deletado ? "Cliente deletado com sucesso!" : "Cliente não encontrado.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("ID inválido. Digite um número.");
+                        }
+                        break;
+
+                    case "3":
+                        _funcionarioService.ExibirRelatorio();
+                        break;
+
+                    case "0":
+                        sair = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        break;
+                }
+            }
         }
     }
 }

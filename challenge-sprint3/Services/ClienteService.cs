@@ -27,11 +27,15 @@ namespace challenge_sprint3.Services
         }
 
 
-        public bool Login(string email, string senha)
+        public Cliente Login(string email, string senha)
         {
             var cliente = _repository.ObterPorEmail(email);
-            if (cliente == null) return false;
-            return cliente.Senha == GerarHash(senha);
+            if (cliente == null) return null;
+
+            if (cliente.Senha == GerarHash(senha))
+                return cliente;
+
+            return null;
         }
 
 

@@ -20,5 +20,6 @@ namespace challenge_sprint3.Repository
             using var conn = _context.CreateConnection();
             return conn.QueryFirstOrDefault<Funcionario>("SELECT * FROM Funcionarios WHERE Email = :Email", new { Email = email });
         }
+
     }
 }

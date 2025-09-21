@@ -12,7 +12,7 @@ var clienteRepository = new ClienteRepository(dbContext);
 var funcionarioRepository = new FuncionarioRepository(dbContext);
 
 var clienteService = new ClienteService(clienteRepository);
-var funcionarioService = new FuncionarioService(funcionarioRepository);
+var funcionarioService = new FuncionarioService(funcionarioRepository, clienteRepository);
 
 var ui = new ConsoleUI(clienteService, funcionarioService);
 
