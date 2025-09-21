@@ -26,6 +26,24 @@ O sistema permite que clientes realizem seu cadastro e efetuem login para acessa
 ---
 ## Exemplos
 
+### 1. Cadastro de Clientes
+
+<img width="502" height="201" alt="image" src="https://github.com/user-attachments/assets/ce9268ca-097e-4fc5-b7df-676e9f69f109" />
+
+
+### 2. Login e Menu de Clientes
+
+<img width="554" height="253" alt="image" src="https://github.com/user-attachments/assets/99960cbf-0c98-4e99-b1d6-d45275249293" />
+<img width="477" height="333" alt="image" src="https://github.com/user-attachments/assets/ad9aa5d6-2a42-4781-9614-bedc387b9af2" />
+<img width="404" height="320" alt="image" src="https://github.com/user-attachments/assets/e22f5d68-a096-4522-8f30-b3cef7a13f71" />
+
+
+### 3. Login e Menu de Funcionários
+
+<img width="643" height="390" alt="image" src="https://github.com/user-attachments/assets/597caa9d-9c40-4c34-b48c-ed32b69dbdb6" />
+<img width="694" height="390" alt="image" src="https://github.com/user-attachments/assets/47517ac0-aaa3-4f48-8b3a-2ba0ec39f844" />
+<img width="371" height="370" alt="image" src="https://github.com/user-attachments/assets/4c5d0d2d-e79c-4632-b95b-7487167c81fb" />
+
 
 ---
 ## Arquitetura em diagramas
