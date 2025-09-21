@@ -29,3 +29,6 @@ O sistema permite que clientes realizem seu cadastro e efetuem login para acessa
 
 ---
 ## Arquitetura em diagramas
+
+<img width="752" height="619" alt="image" src="https://github.com/user-attachments/assets/2e52837f-e553-4f7a-bc4d-3bc7115ff79f" />
+
